@@ -62,7 +62,8 @@ if (window.location.href.includes("appViewId=4dc7db96-d1f0-41ec-8405-38921a97077
                 console.log(row);
                 var grid = $("#GridCi").getKendoGrid();
                 if (confirm("Desea ingresar al tercero? ")) {
-                    location.assign(`#/forms?rowId=${grid.dataItem(row).IdTercero}&viewName=Orion_Lappiz_Tercero&entityId=7eef8db4-6509-4f5e-b9b3-6cd6d1a18178&AppViewId=1436e050-ce43-4946-9469-57906af198c8`)
+                    console.log(e.dataItem);
+                    location.assign(`#/forms?rowId=${grid.dataItem(row).Id}&viewName=Orion_Lappiz_Tercero&entityId=7eef8db4-6509-4f5e-b9b3-6cd6d1a18178&AppViewId=1436e050-ce43-4946-9469-57906af198c8`)
 
                 }
             });
