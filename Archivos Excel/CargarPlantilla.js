@@ -24,7 +24,7 @@ setTimeout(() => {
 						reader.onload = function (e) {
 							//debugger;
 							var data = e.target.result;
-							/puede manejar HTML representado como cadenas/;
+							// /puede manejar HTML representado como cadenas/;
 							var workbook = XLSX.read(data, {
 								type: "binary",
 								cellDates: "True",
