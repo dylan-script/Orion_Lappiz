@@ -8,7 +8,7 @@ Private Function FsbyDigitoVarificacion(Id As Double) As SByte
         Dim i As Integer
         Dim llngAcum As Long = 0
         Dim lsbyDigitoVer As SByte
-        If IsNothing(Id) Then Id = 0
+        If  (Id) Then Id = 0
         For i = 0 To Id.ToString.Length - 1
             llngAcum += CInt(Id.ToString.Substring(i, 1)) * Choose(Len(Id.ToString) - i, 3, 7, 13, 17, 19, 23, 29, 37, 41, 43, 47, 53, 59, 67, 71)
         Next i
