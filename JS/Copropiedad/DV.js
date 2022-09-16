@@ -15,7 +15,7 @@ const dv = (nit) => {
   if (nit !== 0) {
     console.log('Verificando Digito de Verificación')
     for (let i = 0; i < nit.length - 1; i++) {
-      llngAcum += parseInt()
+      llngAcum += parseInt() * chooseValue(nit.length - 1)
     }
   } else {
     console.log('NIT inválido')
