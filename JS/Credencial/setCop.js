@@ -22,8 +22,8 @@ function setUserFK() {
   debugger
   let limit = parseInt(sessionStorage.CantidadRegistros);
   for (let i = 0; i < limit; i++) {
-    let id = e.Orion_Lappiz_CredencialCopropiedad[i].Id;
-    let query2 = `UPDATE Orion_Lappiz_CredencialCopropiedad SET UsersFK = '${sessionStorage.UserFK}' WHERE Id = '${id}'`
+    let id = e.dataItem.Orion_Lappiz_CredencialCopropiedad[i].Id;
+    let query2 = `UPDATE Orion_Lappiz_CredencialCopropiedad SET UserFK = '${sessionStorage.UserFK}' WHERE Id = '${id}'`
     execQuery(query2).then(function (response) {
       var dataResult = response[0];
       console.log(dataResult);
