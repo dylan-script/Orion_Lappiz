@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<style>
+  #GridCi {
+    margin-top: -6%;
+  }
+</style>
+<html>
+  <head>
+    <base href="https://demos.telerik.com/kendo-ui/grid/search-panel" />
+  </head>
+  <body>
+    <div id="GridCi"></div>
+    <script
+      lang="javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.3/xlsx.full.min.js"
+    ></script>
+    <script
+      lang="javascript"
+      src="https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"
+    ></script>
+    <script>
+      var query = `SELECT cop.NombreCorto [Copropiedades]
+            FROM Orion_Lappiz_CopropiedadPH AS cop
+            INNER JOIN Orion_Lappiz_CredencialCopropiedad AS crecop
+              ON crecop.CopropiedadFK = cop.Id
+            INNER JOIN Orion_Lappiz_Credenciales AS cre
+              ON cre.Id = crecop.CredencialFK
+            WHERE cre.UsersFK = '${JSON.parse(sessionStorage.LappizUser).Id}'`;
+
+            var data = ajaxQuery(query);
+            if (data.length > 0) {
+                $('#GridCi').kendoGrid({
+                    dataSource: {
+                        data: data,
+                        autoSync: true,
+                        schema: {
+                            model: {
+                                fields: {
+                                    Copropiedades: { type: "string", editable: false }
+                                },
+                            },
+                        },
+                        //sort: [{ field: "Reserva", dir: "asc" }],
+                    },
+                    height: 450,
+                    scrollable: true,
+                    sortable: true,
+                    filterable: true,
+                    resizable: true,
+                    pageable: {
+                        pageable: true,
+                        previousNext: false,
+                        pageSize: 10,
+                        alwaysVisible: true,
+                        numeric: true,
+                        buttonCount: 5
+                    },
+                    dataBound: function () {
+                        for (var i = 0; i < this.columns.length; i++) {
+                            this.autoFitColumn(i);
+                        }
+                    },
+                    columns: [
+                        { field: "Copropiedades", title: "Copropiedades" }
+                    ],
+                    editable: true,
+                });
+
+            }
+
+            $("#GridCi tbody").on("click", "tr", function(e) {
+                debugger
+                //var urlFormEdited = '#/forms?rowId=423DBD02-E42E-4CCB-9505-00E1307E3B9A&viewName=Nombre_Entidad&entityId=79668f51-d03a-412e-9d37-7ba91488000d';
+                console.log('OK-1');
+                var row = $(this);
+                console.log(row);
+                var grid = $("#GridCi").getKendoGrid();
+                if (confirm("Desea ingresar al tercero? ")) {
+                    console.log(e.dataItem);
+                    location.assign(`#/forms?rowId=${grid.dataItem(row).Id}&viewName=Orion_Lappiz_Tercero&entityId=7eef8db4-6509-4f5e-b9b3-6cd6d1a18178&AppViewId=1436e050-ce43-4946-9469-57906af198c8`)
+
+                }
+            });
+
+            function ajaxQuery(query) {
+                let data
+                let newquery = {
+                    "query": query,
+                    "parameters": {
+                        "aType": "execTx",
+                        "environment": `${backandGlobal.environment}`
+                    }
+                }
+
+                $.ajax({
+                    async: false,
+                    url: `${backandGlobal.api2}/${sessionStorage.workspace}.api/api/lappiz/sp/query`,
+                    type: 'POST',
+                    data: JSON.stringify(newquery),
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Content-Type', 'application/json');
+                        xhr.setRequestHeader('Authorization', localStorage.Authorization);
+                    },
+                    success: function (result) {
+                        data = result[0]
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                })
+                return data
+            }
+    </script>
+  </body>
+</html>
