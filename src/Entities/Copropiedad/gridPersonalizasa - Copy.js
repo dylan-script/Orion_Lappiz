@@ -1,9 +1,9 @@
 //Id del formulario 
-if (window.location.href.includes("appViewId=e4596a1d-df2f-4ece-9fb2-bfdf1fc2b7bc") && sessionStorage.rolesId != '7ef5a55b-a198-4d5b-81a2-3b1303863523') {
-    setTimeout(function () {
+let appViewId = getAppViewId();
+console.log(appViewId);
 
-
-        debugger;
+if (appViewId == 'e4596a1d-df2f-4ece-9fb2-bfdf1fc2b7bc') {
+    if (sessionStorage.rolesId != '7ef5a55b-a198-4d5b-81a2-3b1303863523') {
         var query = `SELECT cop.NombreCorto [Copropiedades], cop.Id [Id]
             FROM Orion_Lappiz_CopropiedadPH AS cop
             INNER JOIN Orion_Lappiz_CredencialCopropiedad AS crecop
@@ -11,6 +11,13 @@ if (window.location.href.includes("appViewId=e4596a1d-df2f-4ece-9fb2-bfdf1fc2b7b
             INNER JOIN Orion_Lappiz_Credenciales AS cre
               ON cre.Id = crecop.CredencialFK
             WHERE cre.UsersFK = '${JSON.parse(sessionStorage.LappizUser).Id}'`;
+    } else {
+        var query = `SELECT cop.NombreCorto [Copropiedades], cop.Id [Id]
+        FROM Orion_Lappiz_CopropiedadPH AS cop`;
+    }
+    setTimeout(function () {
+        debugger;
+
 
         var data = ajaxQuery(query);
         if (data.length > 0) {

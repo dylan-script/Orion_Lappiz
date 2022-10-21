@@ -1,10 +1,9 @@
 setTimeout(() => {
   debugger
   console.clear();
-  var url = location.href;
-  var urlSplit = url.split('appViewId=')
-  var idVista = urlSplit[1];
-  if (idVista == 'e4596a1d-df2f-4ece-9fb2-bfdf1fc2b7bc' && sessionStorage.rolesId != '7ef5a55b-a198-4d5b-81a2-3b1303863523') {
+  let appViewId = getAppViewId();
+console.log(appViewId);
+  if (appViewId == 'e4596a1d-df2f-4ece-9fb2-bfdf1fc2b7bc') {
     debugger;
 
     var modalHeader1 = `<h4 class="modal-title">Hola modal 1 de Lappiz</h4>`;
