@@ -2,7 +2,7 @@ setTimeout(() => {
   debugger
   console.clear();
   let appViewId = getAppViewId();
-console.log(appViewId);
+  console.log(appViewId);
   if (appViewId == 'e4596a1d-df2f-4ece-9fb2-bfdf1fc2b7bc') {
     debugger;
 
@@ -10,11 +10,11 @@ console.log(appViewId);
     var modalBody1 = `
             <div id="GridCi"></div>
             <br>
-            <button id="btn-test-modal-interna" type="button" class="btn btn-danger">Ejecutar alerta</button>
-            
             
             `;
-    var modalFooter1 = `<h3>Modal footer</h3>`;
+    var modalFooter1 = `<button id="btn-test-modal-interna" type="button" class="btn btn-danger">
+    Crear Copropiedad
+  </button>"`;
 
     var configModal = {
       htmlTemplate: true,
@@ -43,11 +43,14 @@ console.log(appViewId);
       console.log("Dió click en cancel");
     };
 
+
     openCustomModal(configModal, doneModal, cancelModal);
     $("#btn-test-modal-interna").ready(() => {
       $("#btn-test-modal-interna").click(() => {
         debugger;
         alert('Dió click en alert dentro de la modal');
+        var form = '#/grids?viewName=Orion_Lappiz_CopropiedadPH&workspaceId=76dff898-2d10-4a5b-8da6-9720de494395&entityId=65c3da3a-b711-4618-bb94-cf4599077724&dato=Listado%20de%20copropiedades&appViewId=5eb34167-fb51-49b0-bd08-1c996b84f668'
+        goLocation(form)
       });
     });
   }

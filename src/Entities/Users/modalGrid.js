@@ -12,6 +12,7 @@ if (appViewId == 'e4596a1d-df2f-4ece-9fb2-bfdf1fc2b7bc') {
               ON cre.Id = crecop.CredencialFK
             WHERE cre.UsersFK = '${JSON.parse(sessionStorage.LappizUser).Id}'`;
     } else {
+        $("#btn-test-modal-interna").css("display", "block")
         var query = `SELECT cop.NombreCorto [Copropiedades], cop.Id [Id]
         FROM Orion_Lappiz_CopropiedadPH AS cop`;
     }
@@ -72,6 +73,10 @@ if (appViewId == 'e4596a1d-df2f-4ece-9fb2-bfdf1fc2b7bc') {
             console.log(dataItem);
             sessionStorage.CopropiedadId = dataItem.Id;
             console.log(sessionStorage.CopropiedadId);
+            sessionStorage.CopropiedadName = dataItem.Copropiedades;
+            console.log(sessionStorage.CopropiedadName);
+            toastr.success(`Se eligió la copropiedad ${sessionStorage.CopropiedadName}`);
+            $("span.link-title:contains('Copropiedad')").text(sessionStorage.CopropiedadName)
         });
 
         function ajaxQuery(query) {
