@@ -1,3 +1,0 @@
-#UrlBase#/Orion_Lappiz.api/api/Orion_Lappiz_Credenciales?$filter=Orion_Lappiz_Credenciales.UsersFK eq '#sessionStorage.UserFK#'
-
- #UrlBase#/Orion_Lappiz.api/api/Orion_Lappiz_Copropiedad?$expand=Orion_Lappiz_Credenciales&$filter=UsersFK eq '#JSON.parse(sessionStorage.LappizUser).Id#'
