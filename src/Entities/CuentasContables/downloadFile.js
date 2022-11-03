@@ -4,8 +4,8 @@ setTimeout(() => {
 
   var idVista = getAppViewId();
 
-  if (idVista == 'e4596a1d-df2f-4ece-9fb2-bfdf1fc2b7bc') {
-    document.getElementById("#DescargarExport").onclick = (function () { descargarPlantilla() })
+  if (idVista == 'b3c31ae0-cf42-4fa3-aa73-6c56f1f52dc3') {
+    document.getElementById("DescargarExport").onclick = (function () { descargarPlantilla() })
 
     //$("#DescargarExport").onclick(function () { descargarPlantilla() })
 
@@ -15,7 +15,7 @@ setTimeout(() => {
 
       let result
 
-      let Query = `SELECT CENombreCuentaCont, IdCuentaCont FROM Orion_Lappiz_CuentaCont AS
+      let Query = `SELECT CENombreCuentaCont, IdCuentaCont FROM Orion_Lappiz_CuentaCont
       WHERE IdCopropiedadFK = '${sessionStorage.CopropiedadId
         }'`;
 
