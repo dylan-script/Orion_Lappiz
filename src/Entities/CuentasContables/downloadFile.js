@@ -55,25 +55,26 @@ setTimeout(() => {
           //exportando
 
           /*Las funciones exportadas write y writeFile aceptan un argumento de opciones:*/
-          let archivo = XLSX.write(excelUsuarios, {
+          /* let archivo = XLSX.write(excelUsuarios, {
             bookType: 'xlsx',
             type: 'binary'
-          });
+          }); */
 
-          function conversion(s) {
+
+          /* function conversion(s) {
 
             let buf = new ArrayBuffer(s.length);
             let view = new Uint8Array(buf);
             for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
             return buf;
-          }
+          } */
 
           if (confirm('¿Quiere descargar la plantilla de excel?')) {
             /*nombre del archivo de excell*/
-
-            saveAs(new Blob([conversion(archivo)], {
+            XLSX.writeFile(excelUsuarios, "Cuentas.xlsx", { compression: true })
+            /* saveAs(new Blob([conversion(archivo)], {
               type: "application/octet-stream"
-            }), 'Exportaciones.xlsx');
+            }), 'Exportaciones.xlsx'); */
           }
         }
 
