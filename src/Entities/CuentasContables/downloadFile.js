@@ -4,7 +4,7 @@ setTimeout(() => {
 
   var idVista = getAppViewId();
 
-  if (idVista == 'b3c31ae0-cf42-4fa3-aa73-6c56f1f52dc3') {
+  if (idVista == '36632d50-b983-46cb-a6dc-c83f017db493') {
     document.getElementById("DescargarExport").onclick = (function () { descargarPlantilla() })
 
     //$("#DescargarExport").onclick(function () { descargarPlantilla() })
@@ -34,10 +34,10 @@ setTimeout(() => {
             Author: "Orion",
           };
 
-          excelUsuarios.SheetNames.push("result");
+          excelUsuarios.SheetNames.push("Cuentas Contables");
 
           let resultSheet = [
-            ['CENombreCuentaCont', 'IdCuentaCont']
+            ['Nombre de la Cuenta Contable', 'Id de la Cuenta Contable']
           ]
 
           //Llenar hojas
@@ -50,7 +50,7 @@ setTimeout(() => {
           let hoja1 = XLSX.utils.aoa_to_sheet(resultSheet);
 
 
-          excelUsuarios.Sheets["result"] = hoja1;
+          excelUsuarios.Sheets["Cuentas Contables"] = hoja1;
 
           //exportando
 
