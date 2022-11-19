@@ -1,12 +1,15 @@
 setTimeout(() => {
   debugger
   console.clear();
+  sessionStorage.Eleccion = 0;
+  console.log(sessionStorage.Eleccion);
   let appViewId = getAppViewId();
   console.log(appViewId);
   if (appViewId == 'e4596a1d-df2f-4ece-9fb2-bfdf1fc2b7bc') {
     debugger;
 
-    var modalHeader1 = `<h4 class="modal-title">Hola modal 1 de Lappiz</h4>`;
+    var modalHeader1 = `
+    <h4 class="modal-title">Hola modal 1 de Lappiz</h4>`;
     var modalBody1 = `
             <div id="GridCi"></div>
             <br>
