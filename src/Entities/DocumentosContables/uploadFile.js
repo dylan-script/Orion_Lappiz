@@ -4,7 +4,7 @@ setTimeout(() => {
 
   var idVista = getAppViewId();
 
-  if (idVista == '36632d50-b983-46cb-a6dc-c83f017db493') {
+  if (idVista == '6c78002d-291f-4072-afa4-dc884fbcf26f') {
     if (e.isNew) {
       debugger;
       $("#CargarExportacion").change(function (oEvent) {
@@ -33,37 +33,52 @@ setTimeout(() => {
 
             let Data = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
             var Query = ``;
+            var fila = 0;
+            var filasFaltantes = 0;
             var nuevosRegistros = 0;
             var registrosActualizados = 0;
             debugger;
             console.clear();
             for (let i = 0; i < Data.length; i++) {
-              var idCuenta = Data[i]["Id de la Cuenta Contable"];
+              var numDoc = Data[i]["Número inicial del documento"];
 
-              var consulta = ajaxQuery(
-                `SELECT * FROM Orion_Lappiz_CuentaCont WHERE IdCuentaCont ='${idCuenta}' AND IdCopropiedadFK = '${sessionStorage.CopropiedadId}'`
+              var importacion = ajaxQuery(
+                `SELECT * FROM Orion_Lappiz_DocumentoContable WHERE NumeracionInicialDoc = '${numDoc}' AND IdCopropiedadFK = '${sessionStorage.CopropiedadId}'`
               );
-              if (consulta.length == 0) {
-                var IdCuentaCont = Data[i]["Id de la Cuenta Contable"];
-                var CENombreCuentaCont = Data[i]["Nombre de la Cuenta Contable"];
+              if (importacion.length == 0) {
+                var nomDoc = Data[i]["Nombre del documento contable"];
+                var tipoDoc = Data[i]["Tipo documento en contabilidad"];
+                var numeroDoc = Data[i]["Número inicial del documento"];
 
-                Query += ` INSERT INTO Orion_Lappiz_CuentaCont (CENombreCuentaCont, IdCuentaCont, IdCopropiedadFK)
-                                    VALUES ('${CENombreCuentaCont}','${IdCuentaCont}', '${sessionStorage.CopropiedadId}');`;
+                Query += `INSERT INTO Orion_Lappiz_DocumentoContable (NombreDocumentoCont, 
+                    TipoDocumentoCont,
+                    NumeracionInicialDoc,
+                    IdCopropiedadFK)
+                    VALUES ('${nomDoc}',
+                            '${tipoDoc}',
+                            '${numeroDoc}',
+                            '${sessionStorage.CopropiedadId}')`;
                 nuevosRegistros++;
               } else {
                 var cambios = 0;
                 var update = ``;
-                var CENombreCuentaCont = Data[i]["Nombre de la Cuenta Contable"];
-                if (CENombreCuentaCont != consulta[0].CENombreCuentaCont) {
-                  update += `CENombreCuentaCont = '${CENombreCuentaCont}' `;
+                var nomDoc = Data[i]["Nombre del documento contable"];
+                if (nomDoc != importacion[0].NombreDocumentoCont) {
+                  update += ` NombreDocumentoCont = '${nomDoc}' ,`;
+                  cambios++;
+                }
+
+                var tipoDoc = Data[i]["Nombre del documento contable"];
+                if (tipoDoc != importacion[0].TipoDocumentoCont) {
+                  update += ` TipoDocumentoCont = '${tipoDoc}' ,`;
                   cambios++;
                 }
 
 
                 if (cambios > 0) {
-                  Query += ` UPDATE Orion_Lappiz_CuentaCont
+                  Query += `UPDATE Orion_Lappiz_CuentaCont
                             			SET ${update}
-                             			WHERE IdCopropiedadFK = '${sessionStorage.CopropiedadId}' AND IdCuentaCont = '${consulta[0].IdCuentaCont}';`;
+                             			where IdCopropiedadFK = '${sessionStorage.CopropiedadId}'`;
                   registrosActualizados++;
                 }
               }
@@ -90,16 +105,16 @@ setTimeout(() => {
             if (nuevosRegistros > 0 || registrosActualizados > 0) {
               if (nuevosRegistros > 0) {
                 toastr.success(
-                  "Se importaron " +
+                  "Se registraron " +
                   nuevosRegistros +
-                  " registros en Cuentas Contables"
+                  " nuevos registros en Exportación"
                 );
               }
               if (registrosActualizados > 0) {
                 toastr.success(
                   "Se actualizaron " +
                   registrosActualizados +
-                  " registros en Cuentas Contables"
+                  " registros en Exportación"
                 );
               }
             } else if (nuevosRegistros == 0 && registrosActualizados == 0) {

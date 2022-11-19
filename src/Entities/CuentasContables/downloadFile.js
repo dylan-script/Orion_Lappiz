@@ -4,8 +4,8 @@ setTimeout(() => {
 
   var idVista = getAppViewId();
 
-  if (idVista == 'e4596a1d-df2f-4ece-9fb2-bfdf1fc2b7bc') {
-    document.getElementById("#DescargarExport").onclick = (function () { descargarPlantilla() })
+  if (idVista == '36632d50-b983-46cb-a6dc-c83f017db493') {
+    document.getElementById("DescargarExport").onclick = (function () { descargarPlantilla() })
 
     //$("#DescargarExport").onclick(function () { descargarPlantilla() })
 
@@ -15,7 +15,7 @@ setTimeout(() => {
 
       let result
 
-      let Query = `SELECT CENombreCuentaCont, IdCuentaCont FROM Orion_Lappiz_CuentaCont AS
+      let Query = `SELECT CENombreCuentaCont, IdCuentaCont FROM Orion_Lappiz_CuentaCont
       WHERE IdCopropiedadFK = '${sessionStorage.CopropiedadId
         }'`;
 
@@ -34,10 +34,10 @@ setTimeout(() => {
             Author: "Orion",
           };
 
-          excelUsuarios.SheetNames.push("result");
+          excelUsuarios.SheetNames.push("Cuentas Contables");
 
           let resultSheet = [
-            ['CENombreCuentaCont', 'IdCuentaCont']
+            ['Nombre de la Cuenta Contable', 'Id de la Cuenta Contable']
           ]
 
           //Llenar hojas
@@ -50,30 +50,31 @@ setTimeout(() => {
           let hoja1 = XLSX.utils.aoa_to_sheet(resultSheet);
 
 
-          excelUsuarios.Sheets["result"] = hoja1;
+          excelUsuarios.Sheets["Cuentas Contables"] = hoja1;
 
           //exportando
 
           /*Las funciones exportadas write y writeFile aceptan un argumento de opciones:*/
-          let archivo = XLSX.write(excelUsuarios, {
+          /* let archivo = XLSX.write(excelUsuarios, {
             bookType: 'xlsx',
             type: 'binary'
-          });
+          }); */
 
-          function conversion(s) {
+
+          /* function conversion(s) {
 
             let buf = new ArrayBuffer(s.length);
             let view = new Uint8Array(buf);
             for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
             return buf;
-          }
+          } */
 
           if (confirm('¿Quiere descargar la plantilla de excel?')) {
             /*nombre del archivo de excell*/
-
-            saveAs(new Blob([conversion(archivo)], {
+            XLSX.writeFile(excelUsuarios, "Cuentas.xlsx", { compression: true })
+            /* saveAs(new Blob([conversion(archivo)], {
               type: "application/octet-stream"
-            }), 'Exportaciones.xlsx');
+            }), 'Exportaciones.xlsx'); */
           }
         }
 

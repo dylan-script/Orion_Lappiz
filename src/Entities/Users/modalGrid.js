@@ -65,7 +65,7 @@ if (appViewId == 'e4596a1d-df2f-4ece-9fb2-bfdf1fc2b7bc') {
 
         $("#GridCi tbody").on("click", "tr", function (e) {
             debugger
-            console.clear();
+            //console.clear();
             console.log('running...')
             let grid = kendo.jQuery('#GridCi').data('kendoGrid');
             var dataItem = grid.dataItem($(e.currentTarget).closest("tr"));
@@ -76,7 +76,15 @@ if (appViewId == 'e4596a1d-df2f-4ece-9fb2-bfdf1fc2b7bc') {
             sessionStorage.CopropiedadName = dataItem.Copropiedades;
             console.log(sessionStorage.CopropiedadName);
             toastr.success(`Se eligió la copropiedad ${sessionStorage.CopropiedadName}`);
-            $("span.link-title:contains('Copropiedad')").text(sessionStorage.CopropiedadName)
+            if (sessionStorage.Eleccion == '0') {
+                $("span.link-title:contains('Copropiedad')").text(sessionStorage.CopropiedadName)
+                sessionStorage.Eleccion = '1';
+                console.log(sessionStorage.Eleccion)
+            } else {
+                $(`span.link-title:contains('${sessionStorage.CopActual}')`).text(sessionStorage.CopropiedadName)
+            }
+            sessionStorage.CopActual = sessionStorage.CopropiedadName;
+            console.log(sessionStorage.CopActual)
         });
 
         function ajaxQuery(query) {

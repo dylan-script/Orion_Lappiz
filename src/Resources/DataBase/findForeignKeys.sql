@@ -6,4 +6,4 @@ FROM
   INNER JOIN sys.foreign_key_columns AS fc ON f.OBJECT_ID = fc.constraint_object_id
   INNER JOIN sys.tables t ON t.OBJECT_ID = fc.referenced_object_id
 WHERE
-  OBJECT_NAME (f.referenced_object_id) = 'Orion_Lappiz_Users' -- exec sp_columns Kuiper_Lappiz_DetalleRiesgosInterrupcion
+  OBJECT_NAME (f.referenced_object_id) = 'Orion_Lappiz_Copropiedad' -- exec sp_columns Kuiper_Lappiz_DetalleRiesgosInterrupcion
