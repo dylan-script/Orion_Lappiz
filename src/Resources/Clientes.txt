@@ -1,0 +1,21 @@
+Plantilla Excel:
+Se registran los campos de la entidad cliente
+Id del Tercero
+
+Query -> SELECT * FROM Terceros -> Verificar la existencia
+del tercero.
+
+Query -> Cliente -> (IdTercero, IdCopropiedad)
+
+En caso de que el Tercero no exista: 
+Se salta el registro de ese cliente y
+se prosigue con los siguientes
+
+alert('Los terceros no existen: ...') -> Lista.
+ 
+En caso de que se intente registrar nuevamente un cliente:
+alert('¿Desea Actualizar el cliente...?') -> UPDATE Cliente -> (IdTercero, IdCopropiedad)
+
+ 
+
+Al final se le coloca de manera automática el IdCopropiedadFK

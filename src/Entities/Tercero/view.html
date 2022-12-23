@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<style>
+.import-export {
+    display: flex;
+    justify-content: center;
+    gap: 10px 5%;
+}
+
+input[type="file"] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0; 
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+label {
+    cursor: pointer;
+    background-color: transparent;
+    margin-bottom: 0rem; 
+}
+
+@media (max-width: 420px) {
+    .import-export {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px 5%;
+    }
+}
+</style>
+
+<section id="btn-section" class="import-export">
+  <div class="btn-import-export">
+    <div class="dropdown">
+      <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Exportar
+      </button>
+      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+        <a class="dropdown-item" id='generarPlantilla'><i class="fa fa-download"></i> Plantilla</a>
+        <a class="dropdown-item" id='exportarTerceros'><i class="fa fa-download"></i> Terceros</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Dropdown button
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </div>
+  </div>
+  <div class="input-group-append">
+    <div id="importarTerceros" class="btn btn-outline-secondary">
+      <input type="file" id="importarTerceros" class="" />
+      <label for="importarTerceros" class="">
+        <span ><i class="fa fa-upload"></i> Importar</span>
+      </label>
+    </div>
+  </div>
+</section>
+
+<!-- use version 0.19.0 -->
+<script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.19.0/package/dist/xlsx.full.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

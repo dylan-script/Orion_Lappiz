@@ -1,0 +1,109 @@
+<style>
+  .containButton {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-left: 20%;
+    margin-top: -2%;
+  }
+
+  .buttonDiv {
+    width: 33%
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  input[type="file"]#importarClientes {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+    padding-top: 20px;
+  }
+
+  .cargar {
+    color: #fff;
+    background-color: #257f1e;
+    display: flex;
+    flex-direction: column-reverse;
+    cursor: pointer;
+    border: 1px solid #257f1e;
+    margin: 3px;
+    padding-top: 23px;
+    padding-right: 25px;
+    padding-bottom: 3px;
+    padding-left: 25px;
+    text-align: center;
+    border-radius: 50px 50px 50px 50px;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    box-sizing: border-box;
+    border-width: 2px;
+    padding: 5px;
+    width: auto;
+  }
+
+  label[for="importarClientes"] {
+        color: #fff;
+    background-color: #257f1e;
+    display: flex;
+    transition: all .5s;
+    cursor: pointer;
+    border: 1px solid #257f1e;
+    margin: 3px;
+    padding-top: 23px;
+    padding-right: 25px;
+    padding-bottom: 3px;
+    padding-left: 25px;
+    text-align: center;
+    border-radius: 50px 50px 50px 50px;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    box-sizing: border-box;
+    border-width: 2px;
+    padding: 5px;
+    width: auto;
+    justify-content: center;
+  }
+
+  label[for="importarClientes"]:hover {
+    background-color: #257f1e;
+  }
+
+  .labelCargar {
+    width: 100%;
+    height: 75%;
+    padding-top: 3px;
+  }
+</style>
+
+<div class="containButton">
+  <div class="buttonDiv">
+    <!--onclick="generarPlantilla()"-->
+    <a class="button cargar" id='generarPlantilla'><i class="fa fa-download"></i> Generar plantilla</a>
+  </div>
+
+  <div class="buttonDiv">
+    <input type="file" id="importarClientes" class="download-products" />
+    <label for="importarClientes" class="active mdl-button mdl-button--acciones mdl-button--primary labelCargar"
+      style="margin-bottom: 8px; ">
+      <span><i class="fa fa-upload" style="color: white;"></i> Importar importarClientes</span>
+    </label>
+  </div>
+
+  <div class="buttonDiv">
+    <!--onclick="descargarPlantilla()"-->
+    <a class="button cargar" id='exportarClientes'><i class="fa fa-download"></i> Exportar clientes</a>
+  </div>
+
+</div>
+
+<!-- use version 0.19.0 -->
+<script src="https://cdn.sheetjs.com/xlsx-0.19.0/package/dist/xlsx.full.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/shim.min.js" integrity="sha512-nPnkC29R0sikt0ieZaAkk28Ib7Y1Dz7IqePgELH30NnSi1DzG4x+envJAOHz8ZSAveLXAHTR3ai2E9DZUsT8pQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
