@@ -5,7 +5,9 @@ console.log(appViewId);
 if (appViewId == '6c78002d-291f-4072-afa4-dc884fbcf26f') {
 
   $("#btn-test-modal-interna").css("display", "block")
-  var query = `SELECT dc.NombreDocumentoCont [NombreDocumento], 
+  var query = `SELECT dc.IdDoc [IdDocumento], 
+  dc.NombreDocumentoCont [NombreDocumento],
+  dc.PrefijoDocumentoCont	 [Prefijo],
   dc.NumeracionInicialDoc [NumeroInicial],
    dc.TipoDocumentoCont [TipoDocumento] FROM Orion_Lappiz_DocumentoContable AS dc WHERE dc.IdCopropiedadFK = '${sessionStorage.CopropiedadId}'`;
 
@@ -22,7 +24,9 @@ if (appViewId == '6c78002d-291f-4072-afa4-dc884fbcf26f') {
           schema: {
             model: {
               fields: {
+                IdDocumento: { type: "string", editable: false },
                 NombreDocumento: { type: "string", editable: false },
+                Prefijo: { type: "string", editable: false },
                 NumeroInicial: { type: "string", editable: false },
                 TipoDocumento: { type: "string", editable: false }
               },
@@ -49,7 +53,9 @@ if (appViewId == '6c78002d-291f-4072-afa4-dc884fbcf26f') {
           }
         },
         columns: [
-          { field: "NombreDocumento", title: "Nombre del Documento" },
+          { field: "IdDocumento", title: "Id" },
+          { field: "NombreDocumento", title: "Nombre" },
+          { field: "Prefijo", title: "Prefijo" },
           { field: "NumeroInicial", title: "Número Inicial" },
           { field: "TipoDocumento", title: "Tipo de Documento" }
         ],
